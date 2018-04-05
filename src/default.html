@@ -1,9 +1,9 @@
 <div class="form-group schema-form-{{form.type}} {{form.htmlClass}}"
      ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false }">
-  <label class="control-label col-sm-1 {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
+  <label class="control-label col-sm-2 {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
 
   <div class="col-sm-10">
-    <input ng-if="!form.fieldAddonLeft && !form.fieldAddonRight"
+    <input ng-if="!form.fieldAddonLeft && !form.fieldAddonRight && !form.removeButton"
            ng-show="form.key"
            type="{{form.type}}"
            step="any"
@@ -17,8 +17,9 @@
            name="{{form.key.slice(-1)[0]}}"
            aria-describedby="{{form.key.slice(-1)[0] + 'Status'}}">
 
-    <div ng-if="form.fieldAddonLeft || form.fieldAddonRight"
-         ng-class="{'input-group': (form.fieldAddonLeft || form.fieldAddonRight)}">
+
+    <div ng-if="form.fieldAddonLeft || form.fieldAddonRight || form.removeButton"
+         ng-class="{'input-group': (form.fieldAddonLeft || form.fieldAddonRight || form.removeButton)}">
       <span ng-if="form.fieldAddonLeft"
             class="input-group-addon"
             ng-bind-html="form.fieldAddonLeft"></span>
@@ -38,6 +39,14 @@
       <span ng-if="form.fieldAddonRight"
             class="input-group-addon"
             ng-bind-html="form.fieldAddonRight"></span>
+
+      <span ng-if="form.removeButton"
+            ng-hide="form.readonly || form.remove === null"
+            ng-click="deleteFromArray($index)"
+            ng-disabled="form.schema.minItems >= modelArray.length"
+            class="input-group-addon input-group-btn">
+            &times;
+      </span>
     </div>
 
     <span ng-if="form.feedback !== false"
