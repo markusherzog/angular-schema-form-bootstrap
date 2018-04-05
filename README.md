@@ -32,3 +32,22 @@ Future
 Using the new builder opens up for a lot of optimization. Primarily we can get rid of a lot of small
 watches by using build helpers. For instance, slapping on a `sf-changed` directive *only* if the
 form definition has an `onChange` option.
+
+Development
+-----------
+```sh
+./node_modules/.bin/gulp watch
+```
+
+Custom CSS
+----------
+```css
+legend {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.form-horizontal .has-feedback .inside-input-group.form-control-feedback {
+    right: 55px;
+}
+```

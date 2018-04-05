@@ -51,7 +51,7 @@
 
     <span ng-if="form.feedback !== false"
           class="form-control-feedback"
-          ng-class="evalInScope(form.feedback) || {'glyphicon': true, 'glyphicon-ok': hasSuccess(), 'glyphicon-remove': hasError() }"
+          ng-class="evalInScope(form.feedback) || {'glyphicon': true, 'glyphicon-ok': hasSuccess(), 'glyphicon-remove': hasError(), 'inside-input-group': (form.fieldAddonRight || form.removeButton) }"
           aria-hidden="true"></span>
 
     <span ng-if="hasError() || hasSuccess()"
